@@ -41,7 +41,7 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.name == "Bumper")
         {
-            // Push the ball away from the bumper
+            // Push the ball away from the bumper and calculate score
             Vector2 away = (transform.position - collision.transform.position).normalized;
             rb.linearVelocity = away * bumperPush;
             score += 10;
