@@ -9,6 +9,7 @@ public class TrapdoorRattle : MonoBehaviour
     public float timeBetweenThumps = 1.5f;
     public float bumpHeight = 0.05f; // how far the door jumps up
     public AudioClip thumpSound;
+    public bool shakeDoor = false; // off = the door stays still, you only hear the thumps
 
     private AudioSource audioSource;
     private Vector3 startPosition;
@@ -42,7 +43,7 @@ public class TrapdoorRattle : MonoBehaviour
         }
 
         // shake the door while the bump is happening, otherwise rest flat
-        if (bumpTimer > 0f)
+        if (shakeDoor && bumpTimer > 0f)
         {
             bumpTimer -= Time.deltaTime;
             transform.position = startPosition + Vector3.up * Random.Range(0f, bumpHeight);
