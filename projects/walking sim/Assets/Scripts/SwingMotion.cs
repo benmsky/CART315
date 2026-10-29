@@ -8,6 +8,7 @@ public class SwingMotion : MonoBehaviour
     public float swingAngle = 15f;  // how far it swings, in degrees
     public float swingSpeed = 1.5f; // how fast it swings
     public AudioClip bangSound;     // optional
+    public bool moveObject = false; // off = invisible swing, you only hear the bangs
 
     private AudioSource audioSource;
     private Quaternion startRotation;
@@ -24,7 +25,10 @@ public class SwingMotion : MonoBehaviour
     {
         // Mathf.Sin goes smoothly between -1 and 1 forever, which is perfect for swinging
         float swing = Mathf.Sin(Time.time * swingSpeed);
-        transform.localRotation = startRotation * Quaternion.Euler(swing * swingAngle, 0f, 0f);
+        if (moveObject)
+        {
+            transform.localRotation = startRotation * Quaternion.Euler(swing * swingAngle, 0f, 0f);
+        }
 
         // when it stops moving back and starts moving forward, it has hit the wall
         bool swingingBack = swing > lastSwing;
