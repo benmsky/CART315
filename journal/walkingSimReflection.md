@@ -1,5 +1,3 @@
-10/29/2026
-
 
 For the walking simulator I went with the cabin in the woods from Evil Dead 2. It's one of those places that's instantly recognizable even though it's really just a small log cabin, so I wanted to see if I could get it to read as "that cabin" using only Unity's built-in shapes. Everything is made out of cubes, cylinders and spheres. The walls are stacked cylinders with the corners crossing over each other, there's a triangle-shaped roof, a stone chimney, a front porch with a swing, and an old car parked out front. Inside there's the fireplace, the table with the Book of the Dead and the tape recorder, the mounted deer head, a wall clock, two little bedrooms, and the cellar trapdoor chained shut in the middle of the floor. It's only one floor, which kept it manageable.
 
