@@ -2,5 +2,4 @@
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="Cart315.FirstPerson.csproj" />
   <Project Path="Cart315.FirstPerson.Editor.csproj" />
-  <Project Path="Assembly-CSharp-Editor.csproj" />
 </Solution>
