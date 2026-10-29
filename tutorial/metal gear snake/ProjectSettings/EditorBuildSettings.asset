@@ -18,3 +18,4 @@ EditorBuildSettings:
     path: Assets/Scenes/Room 4.unity
     guid: 5b1cba550c544f8489d1bc703594feb8
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
