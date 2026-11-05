@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FogPuff
+  m_Shader: {fileID: 4800000, guid: efa17d6a57c37b64c8a10e248c06995c, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: a71c51e3bfcd9ec4c943cb464d583756, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _Opacity: 0.2
+    - _SoftDistance: 2.5
+    m_Colors:
+    - _FogTint: {r: 0.16, g: 0.21, b: 0.33, a: 1}
+    - _MoonDir: {r: -0.24294212, g: 0.34191853, b: -0.9077835, a: 0}
+    - _MoonTint: {r: 0.3, g: 0.48, b: 0.9, a: 1}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
