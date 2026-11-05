@@ -30863,6 +30863,8 @@ GameObject:
   - component: {fileID: 473449607}
   - component: {fileID: 473449609}
   - component: {fileID: 473449608}
+  - component: {fileID: 473449611}
+  - component: {fileID: 473449610}
   m_Layer: 0
   m_Name: Swing Pivot
   m_TagString: Untagged
@@ -31000,6 +31002,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SwingMotion
   bangSound: {fileID: 8300000, guid: e337b9f67189c724d99c1e116929a475, type: 3}
   timeBetweenBangs: 7
+--- !u!114 &473449610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473449606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5354ca77cf1536b4eb183cdadbaabd60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MuffleIndoors
+  player: {fileID: 460502793}
+  cabinArea:
+    m_Center: {x: 0, y: 2, z: 0}
+    m_Extent: {x: 6, y: 2, z: 5}
+  outdoorCutoff: 22000
+  indoorCutoff: 2000
+  indoorVolume: 1.25
+  fadeSpeed: 3
+--- !u!169 &473449611
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473449606}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &474451138
 GameObject:
   m_ObjectHideFlags: 0
@@ -152452,6 +152499,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2123346383}
   - component: {fileID: 2123346382}
+  - component: {fileID: 2123346385}
+  - component: {fileID: 2123346384}
   m_Layer: 0
   m_Name: Forest Ambience
   m_TagString: Untagged
@@ -152571,6 +152620,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2123346384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123346381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5354ca77cf1536b4eb183cdadbaabd60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MuffleIndoors
+  player: {fileID: 460502793}
+  cabinArea:
+    m_Center: {x: 0, y: 2, z: 0}
+    m_Extent: {x: 6, y: 2, z: 5}
+  outdoorCutoff: 22000
+  indoorCutoff: 2000
+  indoorVolume: 1.25
+  fadeSpeed: 3
+--- !u!169 &2123346385
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123346381}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2123951148
 GameObject:
   m_ObjectHideFlags: 0
