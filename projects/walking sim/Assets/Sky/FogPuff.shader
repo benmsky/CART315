@@ -72,7 +72,7 @@ Shader "CART315/FogPuff"
                 alpha *= saturate((sceneDepth - i.screen.z) / _SoftDistance);
 
                 // fades away right in front of the player
-                alpha *= saturate((i.screen.z - 1.0) / 4.0);
+                alpha *= saturate((i.screen.z - 0.5) / 2.5);
 
                 // fog between the player and the moon lights up
                 float towardMoon = saturate(dot(normalize(i.view), normalize(_MoonDir)));
