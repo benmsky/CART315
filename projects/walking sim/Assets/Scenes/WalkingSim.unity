@@ -152453,7 +152453,7 @@ GameObject:
   - component: {fileID: 2123346383}
   - component: {fileID: 2123346382}
   m_Layer: 0
-  m_Name: Wind Ambience
+  m_Name: Forest Ambience
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152470,9 +152470,9 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: c33a71fc47ca2594f975899c9e4dacf1, type: 3}
+  m_Resource: {fileID: 8300000, guid: 5d3cc23cc0403fe4f8e662705cb1cfe2, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.6
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0
