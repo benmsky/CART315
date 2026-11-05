@@ -1,0 +1,9 @@
+For this prototype I took the Unity snake tutorial and turned it into Metal Gear Snake. The idea is pretty simple. The snake is Solid Snake, crawling through the vents. You still move one square at a time, but instead of eating food you crawl into goons to knock them out, and your bandana gets longer every time. If you hit a wall or your own bandana you get spotted, a "!" pops up with an alert sound, and the room restarts. The exit stays dark and locked until every goon is down, and getting to it sends you to a random different room out of the four in the game.
+
+Originally I had planned to make the prototype a sort of turret defense where you're the apple shooting at the snakes, but I settled for a play on words: snake x snake.
+
+The rules are barely different from regular Snake, but the theme kind of changes what they mean. Losing isn't dying anymore, it's getting caught, and the tail isn't just a score, it's Snake's bandana. The part I find most interesting is that the goons aren't optional. You have to take down all of them to open the exit, so the room gets harder the closer you are to finishing, because your longest bandana is the one you have to drag to the door. The small stuff made a difference too. Snake slides between squares instead of jumping, and the game remembers up to two turns so quick key presses don't get lost. None of that changes the rules, but it changes how it feels to play, which is kind of what we talked about with juice. 
+
+I think the hardest part of setting the game up was having to test if beating the game was possible, I was alwasy trying to speed through it but I'd always get too comfortable.
+
+If I came back to this, the only changes I’d make are adding an outline to every tile, so it’s easier to time your turns, and making more maps, since there are only four rooms right now.
