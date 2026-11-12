@@ -6,7 +6,9 @@ public class TrapdoorRattle : MonoBehaviour
 {
     public Transform player;
     public float triggerDistance = 4f;
-    public float timeBetweenThumps = 1.5f;
+    public float timeBetweenThumps = 4f;
+    public float shortestWait = 3f;  // seconds between knocks or pushes, picked at random each time
+    public float longestWait = 7f;
     public AudioClip thumpSound;     // the slam after a push
     public AudioClip[] knockSounds;  // picks one at random
 
@@ -44,7 +46,7 @@ public class TrapdoorRattle : MonoBehaviour
             if (thumpTimer >= timeBetweenThumps)
             {
                 thumpTimer = 0f;
-                timeBetweenThumps = Random.Range(1.2f, 3f); // a little randomness so it feels alive
+                timeBetweenThumps = Random.Range(shortestWait, longestWait); // a little randomness so it feels alive
 
                 if (Random.value < pushChance)
                 {
