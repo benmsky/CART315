@@ -1,8 +1,8 @@
 using UnityEngine;
 
 // The old car's headlights. When the cabin door starts to open,
-// they flicker for a moment and then die.
-// Put this on the car.
+// they flicker for a moment and then die, with a groaning metal sound.
+// Put this on the car, with an AudioSource.
 public class CarLights : MonoBehaviour
 {
     public CreepyDoor door;
@@ -12,6 +12,7 @@ public class CarLights : MonoBehaviour
     public Material headlightOn;
     public Material headlightOff;
     public float flickerTime = 1.2f;  // how long it flickers before going dark
+    public AudioClip groanSound;      // plays once when the flicker starts
 
     private bool flickering;
     private bool dead;
@@ -26,7 +27,11 @@ public class CarLights : MonoBehaviour
         // wait for the door
         if (!flickering)
         {
-            if (door.hasOpened) flickering = true;
+            if (door.hasOpened)
+            {
+                flickering = true;
+                GetComponent<AudioSource>().PlayOneShot(groanSound);
+            }
             return;
         }
 
