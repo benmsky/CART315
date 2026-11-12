@@ -148190,7 +148190,13 @@ MonoBehaviour:
   player: {fileID: 460502793}
   triggerDistance: 4
   timeBetweenThumps: 1.5
-  thumpSound: {fileID: 8300000, guid: ade28c94f03598e40aff88097ae796f2, type: 3}
+  thumpSound: {fileID: 8300000, guid: 0e001cce97935c94d995833deb509d6d, type: 3}
+  knockSounds:
+  - {fileID: 8300000, guid: 686a53ae322a8c149a9a0a05df47e45d, type: 3}
+  - {fileID: 8300000, guid: 91b8eb6b80bcbfd439a983a4353e25fc, type: 3}
+  pushChance: 0.35
+  pushHeight: 0.04
+  pushTilt: 3
 --- !u!1 &1604601920
 GameObject:
   m_ObjectHideFlags: 0
