@@ -2,6 +2,7 @@ using UnityEngine;
 
 // The wall clock. Swings the pendulum back and forth,
 // and plays a tick or a tock each time it reaches the end of a swing.
+// Leave the tick and tock empty if the AudioSource already plays a looping ticking sound.
 // Put this on the clock, with an AudioSource.
 public class PendulumClock : MonoBehaviour
 {
@@ -28,7 +29,7 @@ public class PendulumClock : MonoBehaviour
 
         // the pendulum changes direction at each end of its swing, that's when it ticks
         float direction = Mathf.Sign(Mathf.Cos(time));
-        if (lastDirection != 0f && direction != lastDirection)
+        if (lastDirection != 0f && direction != lastDirection && tickSound != null && tockSound != null)
         {
             audioSource.PlayOneShot(direction > 0f ? tickSound : tockSound);
         }

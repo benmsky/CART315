@@ -187486,8 +187486,8 @@ MonoBehaviour:
   pendulum: {fileID: 270888597}
   swingAngle: 6
   secondsPerSwing: 1
-  tickSound: {fileID: 8300000, guid: 0ec44bf68641cb944bbf751928e11062, type: 3}
-  tockSound: {fileID: 8300000, guid: 0c28b8a96c5271843b0edec473934edf, type: 3}
+  tickSound: {fileID: 0}
+  tockSound: {fileID: 0}
 --- !u!82 &2035836806
 AudioSource:
   m_ObjectHideFlags: 0
@@ -187499,11 +187499,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_Resource: {fileID: 8300000, guid: 05c68e31db5390b41a4868f508a78916, type: 3}
+  m_PlayOnAwake: 1
   m_Volume: 0.6
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
