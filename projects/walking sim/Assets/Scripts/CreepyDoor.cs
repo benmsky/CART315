@@ -11,6 +11,7 @@ public class CreepyDoor : MonoBehaviour
     public float waitBeforeOpening = 0.4f;
     public float openTime = 3f;         // seconds to swing all the way open
     public float openAngle = 95f;       // degrees, swinging into the cabin
+    public bool hasOpened;              // turns true the moment the door starts to open (other scripts can check it)
 
     private AudioSource audioSource;
     private Quaternion closedRotation;
@@ -33,6 +34,7 @@ public class CreepyDoor : MonoBehaviour
             if (Vector3.Distance(transform.position, player.position) < triggerDistance)
             {
                 triggered = true;
+                hasOpened = true;
                 audioSource.PlayOneShot(creakSound);
             }
             return;

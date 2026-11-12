@@ -755,96 +755,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6979838}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &7795335
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7795336}
-  - component: {fileID: 7795338}
-  - component: {fileID: 7795337}
-  m_Layer: 0
-  m_Name: Door Glass
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7795336
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7795335}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.21, z: 0.117}
-  m_LocalScale: {x: 0.31, y: 0.45, z: 0.006}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2035836804}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &7795337
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7795335}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 7edfe2e4647947f4d8e8386528c8719c, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!33 &7795338
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7795335}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &9368627
 GameObject:
   m_ObjectHideFlags: 0
@@ -9807,6 +9717,7 @@ MonoBehaviour:
   waitBeforeOpening: 0.4
   openTime: 3
   openAngle: 95
+  hasOpened: 0
 --- !u!82 &114956876
 AudioSource:
   m_ObjectHideFlags: 0
@@ -69221,6 +69132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 769821183}
+  - component: {fileID: 769821184}
   m_Layer: 0
   m_Name: Old Car
   m_TagString: Untagged
@@ -69282,6 +69194,33 @@ Transform:
   - {fileID: 879808358}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &769821184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 769821182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa42c0e9e03981c45a9dd5378aafd4d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CarLights
+  door: {fileID: 114956875}
+  lights:
+  - {fileID: 271650557}
+  - {fileID: 991403511}
+  beams:
+  - {fileID: 881016676}
+  - {fileID: 1623302331}
+  headlights:
+  - {fileID: 984175060}
+  - {fileID: 2031692115}
+  - {fileID: 1759172914}
+  - {fileID: 932073537}
+  headlightOn: {fileID: 2100000, guid: 962a75c3f6930c64ab21bda2d836c1a1, type: 2}
+  headlightOff: {fileID: 2100000, guid: 276e3a4f823e9334cb1541d5f326ab64, type: 2}
+  flickerTime: 1.2
 --- !u!1 &771274396
 GameObject:
   m_ObjectHideFlags: 0
@@ -192778,7 +192717,6 @@ Transform:
   - {fileID: 133916429}
   - {fileID: 1007808469}
   - {fileID: 570594293}
-  - {fileID: 7795336}
   - {fileID: 270888597}
   m_Father: {fileID: 1995816021}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
