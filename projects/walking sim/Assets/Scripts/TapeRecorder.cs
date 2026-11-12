@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 // The tape recorder. Look at it and press E to play the tape, press E again to stop it.
 // The reels spin and the red button stays pushed in while the tape plays.
+// You can only hear it inside the cabin: it fades out when you step outside.
 // Put this on the recorder, with an AudioSource holding the recording and a collider to look at.
 public class TapeRecorder : MonoBehaviour
 {
@@ -12,15 +13,20 @@ public class TapeRecorder : MonoBehaviour
     public Transform rightReel;
     public float reachDistance = 2.5f; // how close you have to be to press it
     public float reelSpeed = 200f;     // degrees per second
+    public Transform player;
+    public Bounds cabinArea = new Bounds(new Vector3(0f, 2f, 0f), new Vector3(12f, 4f, 10f));
+    public float fadeSpeed = 3f;
 
     private AudioSource audioSource;
     private Vector3 buttonUpPosition;
     private bool lookingAtIt;
+    private float fullVolume;
 
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
         buttonUpPosition = playButton.localPosition;
+        fullVolume = audioSource.volume;
     }
 
     void Update()
@@ -34,6 +40,10 @@ public class TapeRecorder : MonoBehaviour
             if (audioSource.isPlaying) audioSource.Stop();
             else audioSource.Play();
         }
+
+        // full volume inside the cabin, silent outside, sliding between the two
+        float targetVolume = cabinArea.Contains(player.position) ? fullVolume : 0f;
+        audioSource.volume = Mathf.Lerp(audioSource.volume, targetVolume, Time.deltaTime * fadeSpeed);
 
         if (audioSource.isPlaying)
         {

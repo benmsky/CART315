@@ -13,6 +13,7 @@ public class CarLights : MonoBehaviour
     public Material headlightOff;
     public float flickerTime = 1.2f;  // how long it flickers before going dark
     public AudioClip groanSound;      // plays once when the flicker starts
+    public float groanStartTime = 1f; // skip this many seconds of the groan's quiet start
 
     private bool flickering;
     private bool dead;
@@ -30,7 +31,10 @@ public class CarLights : MonoBehaviour
             if (door.hasOpened)
             {
                 flickering = true;
-                GetComponent<AudioSource>().PlayOneShot(groanSound);
+                AudioSource audioSource = GetComponent<AudioSource>();
+                audioSource.clip = groanSound;
+                audioSource.time = groanStartTime;
+                audioSource.Play();
             }
             return;
         }
