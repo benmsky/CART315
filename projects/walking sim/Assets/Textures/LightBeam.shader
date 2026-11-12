@@ -55,10 +55,10 @@ Shader "CART315/LightBeam"
             fixed4 frag(v2f i) : SV_Target
             {
                 // fades out along the beam, and fades in just past the lamp glass
-                float along = pow(1.0 - i.along, 1.6) * smoothstep(0.0, 0.05, i.along);
+                float along = pow(saturate(1.0 - i.along), 1.6) * smoothstep(0.0, 0.05, i.along); // saturate keeps pow from getting a negative number at the tip, which drew black dots
 
                 // the middle of the cone looks thicker than its edges
-                float edge = pow(abs(dot(normalize(i.normal), normalize(i.view))), _EdgeSoftness);
+                float edge = pow(saturate(abs(dot(normalize(i.normal), normalize(i.view)))), _EdgeSoftness);
 
                 // soft where it meets the ground or walls, and gone right in front of the player
                 float sceneDepth = LinearEyeDepth(SAMPLE_DEPTH_TEXTURE_PROJ(_CameraDepthTexture, UNITY_PROJ_COORD(i.screen)));

@@ -20894,7 +20894,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 881016675}
-  - {fileID: 998794395}
   m_Father: {fileID: 769821183}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &271650557
@@ -64376,54 +64375,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789558540}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &792674504
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 792674505}
-  - component: {fileID: 792674506}
-  m_Layer: 0
-  m_Name: Lamp Glare
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &792674505
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792674504}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 991403510}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!123 &792674506
-LensFlare:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 792674504}
-  m_Enabled: 1
-  m_Flare: {fileID: 12100000, guid: dd7e664f26a45d04c9f87d96a3f19a9b, type: 2}
-  m_Color: {r: 1, g: 0.85, b: 0.6, a: 1}
-  m_Brightness: 0.35
-  m_FadeSpeed: 3
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 6
-  m_Directional: 0
 --- !u!1 &793556060
 GameObject:
   m_ObjectHideFlags: 0
@@ -79944,13 +79895,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881016674}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.0000000037252899, y: -0.14948803, z: 0.0000000046566124, w: 0.9887636}
+  m_LocalPosition: {x: 0.13, y: -0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 271650556}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -17.195, z: 0}
 --- !u!23 &881016676
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -87740,7 +87691,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1623302330}
-  - {fileID: 792674505}
   m_Father: {fileID: 769821183}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!108 &991403511
@@ -88060,54 +88010,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 998616496}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &998794394
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 998794395}
-  - component: {fileID: 998794396}
-  m_Layer: 0
-  m_Name: Lamp Glare
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &998794395
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 998794394}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 271650556}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!123 &998794396
-LensFlare:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 998794394}
-  m_Enabled: 1
-  m_Flare: {fileID: 12100000, guid: dd7e664f26a45d04c9f87d96a3f19a9b, type: 2}
-  m_Color: {r: 1, g: 0.85, b: 0.6, a: 1}
-  m_Brightness: 0.35
-  m_FadeSpeed: 3
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 6
-  m_Directional: 0
 --- !u!1 &1000293359
 GameObject:
   m_ObjectHideFlags: 0
