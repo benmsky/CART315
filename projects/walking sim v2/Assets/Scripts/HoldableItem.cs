@@ -46,7 +46,12 @@ public class HoldableItem : MonoBehaviour
         lookingAtIt = false;
 
         // stop physics and colliders while it's in your hand so it doesn't bump into stuff
-        if (body != null) body.isKinematic = true;
+        // interpolation off too, otherwise it keeps pulling the item back to where the physics thinks it is
+        if (body != null)
+        {
+            body.isKinematic = true;
+            body.interpolation = RigidbodyInterpolation.None;
+        }
         foreach (Collider c in GetComponentsInChildren<Collider>()) c.enabled = false;
 
         // stick it to the camera so it moves with you
@@ -73,7 +78,10 @@ public class HoldableItem : MonoBehaviour
         foreach (Collider c in GetComponentsInChildren<Collider>()) c.enabled = true;
         if (body != null)
         {
+            body.position = transform.position;
+            body.rotation = transform.rotation;
             body.isKinematic = false;
+            body.interpolation = RigidbodyInterpolation.Interpolate;
             body.linearVelocity = cam.forward * 0.5f;
         }
     }

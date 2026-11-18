@@ -21,6 +21,7 @@ public class GrassField : MonoBehaviour
     // no grass inside these boxes
     public Bounds cabinArea = new Bounds(new Vector3(0f, 0f, 1.6f), new Vector3(13.4f, 4f, 14.6f));
     public Bounds carArea = new Bounds(new Vector3(6.5f, 0f, 16f), new Vector3(4.5f, 4f, 6.5f));
+    public Bounds shedArea = new Bounds(new Vector3(12f, 0f, -2f), new Vector3(3.6f, 4f, 4f)); // no grass inside the shed
 
     private const float MapSize = 140f; // the size the ground mask covers
 
@@ -83,7 +84,7 @@ public class GrassField : MonoBehaviour
     bool GrassCanGrow(float x, float z)
     {
         Vector3 spot = new Vector3(x, 0f, z);
-        if (cabinArea.Contains(spot) || carArea.Contains(spot)) return false;
+        if (cabinArea.Contains(spot) || carArea.Contains(spot) || shedArea.Contains(spot)) return false;
 
         float dirt = groundMask.GetPixelBilinear(x / MapSize + 0.5f, z / MapSize + 0.5f).r;
         return dirt < 0.3f;
