@@ -132115,6 +132115,75 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848169764}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &849227066
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 849227068}
+  - component: {fileID: 849227067}
+  m_Layer: 0
+  m_Name: Dark Turn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &849227067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849227066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01cd0592e3ac16742a8a4fd2a5f6c7df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DarkTurn
+  tape: {fileID: 1345481709}
+  lighting: {fileID: 1763709480}
+  moonlight: {fileID: 2075806360}
+  moonFlare: {fileID: 647877364}
+  flickerLights:
+  - {fileID: 812875435}
+  - {fileID: 58289162}
+  trapdoor: {fileID: 1603614679}
+  nightAmbience: {fileID: 1487963352}
+  angryShortestWait: 0.4
+  angryLongestWait: 1.1
+  angryPushChance: 0.7
+  angryPushHeight: 0.09
+  angryPushTilt: 7
+  angryReach: 14
+  fireLight: {fileID: 1605727264}
+  fireParticles:
+  - {fileID: 684713601}
+  - {fileID: 1175931536}
+  fireSound: {fileID: 1605727265}
+  embers: {fileID: 1822014960}
+  coldEmbers: {fileID: 2100000, guid: e856f8051cdc2f8428fb272b8379aa52, type: 2}
+  flickerTime: 1.5
+  fadeTime: 2.5
+  darkMoon: 0.25
+--- !u!4 &849227068
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 849227066}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &850062553
 GameObject:
   m_ObjectHideFlags: 0
@@ -261340,6 +261409,11 @@ MonoBehaviour:
   indoorReflections: 0.3
   indoorFog: 0.4
   fadeSpeed: 3
+  darkAmount: 0
+  darkAmbient: 0.35
+  darkFog: 1.7
+  darkFogColour: 0.45
+  darkReflections: 0.4
 --- !u!4 &1763709481
 Transform:
   m_ObjectHideFlags: 0
@@ -317651,3 +317725,4 @@ SceneRoots:
   - {fileID: 1763709481}
   - {fileID: 319822641}
   - {fileID: 961103298}
+  - {fileID: 849227068}

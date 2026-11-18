@@ -16,9 +16,17 @@ public class IndoorLighting : MonoBehaviour
     public float indoorFog = 0.4f;       // 0.4 = 40% of the outdoor fog
     public float fadeSpeed = 3f;
 
+    // the tape turning everything darker. DarkTurn slides darkAmount from 0 to 1
+    public float darkAmount = 0f;
+    public float darkAmbient = 0.35f;     // how much ambient light is left once it's dark
+    public float darkFog = 1.7f;          // fog gets thicker
+    public float darkFogColour = 0.45f;   // and darker
+    public float darkReflections = 0.4f;
+
     private Color outdoorAmbient;
     private float outdoorFogDensity;
     private float outdoorReflections;
+    private Color outdoorFogColour;
     private float insideAmount;          // 0 = outside, 1 = inside
 
     void Start()
@@ -26,6 +34,7 @@ public class IndoorLighting : MonoBehaviour
         outdoorAmbient = RenderSettings.ambientLight;
         outdoorFogDensity = RenderSettings.fogDensity;
         outdoorReflections = RenderSettings.reflectionIntensity;
+        outdoorFogColour = RenderSettings.fogColor;
     }
 
     void Update()
@@ -35,9 +44,10 @@ public class IndoorLighting : MonoBehaviour
         // slide toward the new look so it doesn't snap when you cross the door
         insideAmount = Mathf.Lerp(insideAmount, inside ? 1f : 0f, Time.deltaTime * fadeSpeed);
 
-        RenderSettings.ambientLight = outdoorAmbient * Mathf.Lerp(1f, indoorAmbient, insideAmount);
-        RenderSettings.fogDensity = outdoorFogDensity * Mathf.Lerp(1f, indoorFog, insideAmount);
-        RenderSettings.reflectionIntensity = outdoorReflections * Mathf.Lerp(1f, indoorReflections, insideAmount);
+        RenderSettings.ambientLight = outdoorAmbient * Mathf.Lerp(1f, indoorAmbient, insideAmount) * Mathf.Lerp(1f, darkAmbient, darkAmount);
+        RenderSettings.fogDensity = outdoorFogDensity * Mathf.Lerp(1f, indoorFog, insideAmount) * Mathf.Lerp(1f, darkFog, darkAmount);
+        RenderSettings.reflectionIntensity = outdoorReflections * Mathf.Lerp(1f, indoorReflections, insideAmount) * Mathf.Lerp(1f, darkReflections, darkAmount);
+        RenderSettings.fogColor = outdoorFogColour * Mathf.Lerp(1f, darkFogColour, darkAmount);
     }
 
     // put the outdoor values back when the game stops, so the scene isn't left dark
@@ -46,5 +56,6 @@ public class IndoorLighting : MonoBehaviour
         RenderSettings.ambientLight = outdoorAmbient;
         RenderSettings.fogDensity = outdoorFogDensity;
         RenderSettings.reflectionIntensity = outdoorReflections;
+        RenderSettings.fogColor = outdoorFogColour;
     }
 }
