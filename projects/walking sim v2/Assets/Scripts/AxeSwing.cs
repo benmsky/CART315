@@ -1,26 +1,17 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// the axe. look at it + E to grab it, left click to swing
+// swinging the axe. left click to chop while you're holding it (HoldableItem does the picking up)
 // hits trees in front of you halfway through the swing
-// goes on the axe, needs a collider so the look check can hit it
-public class AxePickup : MonoBehaviour
+// goes on the axe, next to HoldableItem
+public class AxeSwing : MonoBehaviour
 {
-    public Camera playerCamera;
-    public float reachDistance = 2.5f;
     public float chopReach = 2.2f;    // how close a tree has to be to get hit
-
-    // where it sits in your hands, relative to the camera
-    public Vector3 holdPosition = new Vector3(0.38f, -0.42f, 0.75f);
-    public Vector3 holdRotation = new Vector3(-15f, -20f, 25f);
-
     public float swingTime = 0.45f;   // one chop, down and back
     public float swingAngle = 70f;    // how far it chops forward
     public AudioClip swingSound;      // optional
-    public Light glow;                // faint light so it stands out on the wall, off once you grab it
 
-    private bool held;
-    private bool lookingAtIt;
+    private HoldableItem holdable;
     private bool lookingAtTree;
     private bool hitThisSwing;
     private float swingTimer;
@@ -28,24 +19,21 @@ public class AxePickup : MonoBehaviour
 
     void Start()
     {
+        holdable = GetComponent<HoldableItem>();
         audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        Ray lookLine = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
-
-        if (!held)
+        if (!holdable.IsHeld)
         {
-            // same look check as the lamp and tape
-            lookingAtIt = Physics.Raycast(lookLine, out RaycastHit hit, reachDistance) && hit.transform.IsChildOf(transform);
-
-            if (lookingAtIt && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
-            {
-                PickUp();
-            }
+            lookingAtTree = false;
+            swingTimer = 0f;
             return;
         }
+
+        Transform cam = holdable.hands.playerCamera.transform;
+        Ray lookLine = new Ray(cam.position, cam.forward);
 
         // is there a tree close enough to chop
         ChoppableTree tree = TreeInFront(lookLine);
@@ -71,10 +59,10 @@ public class AxePickup : MonoBehaviour
             if (progress >= 0.5f && !hitThisSwing)
             {
                 hitThisSwing = true;
-                if (tree != null) tree.Chop(playerCamera.transform.position);
+                if (tree != null) tree.Chop(cam.position);
             }
         }
-        transform.localRotation = Quaternion.Euler(holdRotation) * Quaternion.Euler(chop * swingAngle, 0f, 0f);
+        transform.localRotation = Quaternion.Euler(holdable.holdRotation) * Quaternion.Euler(chop * swingAngle, 0f, 0f);
     }
 
     ChoppableTree TreeInFront(Ray lookLine)
@@ -85,30 +73,10 @@ public class AxePickup : MonoBehaviour
         return null;
     }
 
-    void PickUp()
-    {
-        held = true;
-        lookingAtIt = false;
-
-        // stick it to the camera so it moves with you
-        transform.SetParent(playerCamera.transform, false);
-        transform.localPosition = holdPosition;
-        transform.localRotation = Quaternion.Euler(holdRotation);
-        if (glow != null) glow.enabled = false;
-
-        // turn off its colliders so it doesn't bump into you or the walls
-        foreach (Collider c in GetComponentsInChildren<Collider>()) c.enabled = false;
-    }
-
-    // little hints at the bottom of the screen
     void OnGUI()
     {
-        string hint = null;
-        if (!held && lookingAtIt) hint = "Press E to pick up the axe";
-        if (held && lookingAtTree) hint = "Click to chop";
-        if (hint == null) return;
-
+        if (!lookingAtTree) return;
         var style = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 22 };
-        GUI.Label(new Rect(0f, Screen.height * 0.75f, Screen.width, 40f), hint, style);
+        GUI.Label(new Rect(0f, Screen.height * 0.75f, Screen.width, 40f), "Click to chop", style);
     }
 }

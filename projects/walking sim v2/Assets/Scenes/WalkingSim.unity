@@ -20116,6 +20116,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143567277}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &144327093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1656500101664370645, guid: 92efd63b18b726040a8e16e8643afde0, type: 3}
+  m_PrefabInstance: {fileID: 460502792}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &148431013
 GameObject:
   m_ObjectHideFlags: 0
@@ -61772,6 +61777,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1656500101664370645, guid: 92efd63b18b726040a8e16e8643afde0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 460502802}
     - targetCorrespondingSourceObject: {fileID: 937308258615747405, guid: 92efd63b18b726040a8e16e8643afde0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 660177408}
@@ -61781,6 +61789,21 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1372339210156492926, guid: 92efd63b18b726040a8e16e8643afde0, type: 3}
   m_PrefabInstance: {fileID: 460502792}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &460502802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144327093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05f90cdb5787e3a46b7a43aa4de2d269, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHands
+  playerCamera: {fileID: 660177411}
+  rightItem: {fileID: 0}
+  leftItem: {fileID: 0}
 --- !u!1 &462405171
 GameObject:
   m_ObjectHideFlags: 0
@@ -67815,6 +67838,8 @@ GameObject:
   - component: {fileID: 507597005}
   - component: {fileID: 507597004}
   - component: {fileID: 507597003}
+  - component: {fileID: 507597007}
+  - component: {fileID: 507597006}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -67854,11 +67879,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c620b760a1a0baa49bc172da189f3d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AxePickup
-  playerCamera: {fileID: 660177411}
-  reachDistance: 2.5
   chopReach: 2.2
-  holdPosition: {x: 0.38, y: -0.42, z: 0.75}
-  holdRotation: {x: -15, y: -20, z: 25}
   swingTime: 0.45
   swingAngle: 70
   swingSound: {fileID: 0}
@@ -67974,12 +67995,57 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 0.1, y: 0.9, z: 0.32}
   m_Center: {x: 0, y: 0.3, z: 0.07}
+--- !u!54 &507597006
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507597001}
+  serializedVersion: 5
+  m_Mass: 1.5
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 3
+--- !u!114 &507597007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 507597001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee255a810d039ef41bed0364d38be3f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HoldableItem
+  itemName: axe
+  hands: {fileID: 460502802}
+  leftHand: 0
+  reachDistance: 2.5
+  holdPosition: {x: 0.38, y: -0.42, z: 0.75}
+  holdRotation: {x: -15, y: -20, z: 25}
 --- !u!1 &508177621
 GameObject:
   m_ObjectHideFlags: 0
