@@ -62,8 +62,6 @@ public class TapeRecorder : MonoBehaviour
     void OnGUI()
     {
         if (!lookingAtIt) return;
-        var style = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 22 };
-        string hint = audioSource.isPlaying ? "Press E to stop the tape" : "Press E to play the tape";
-        GUI.Label(new Rect(0f, Screen.height * 0.75f, Screen.width, 40f), hint, style);
+        HintUI.Prompt("E", audioSource.isPlaying ? "stop the tape" : "play the tape");
     }
 }

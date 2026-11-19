@@ -76,7 +76,6 @@ public class AxeSwing : MonoBehaviour
     void OnGUI()
     {
         if (!lookingAtTree) return;
-        var style = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 22 };
-        GUI.Label(new Rect(0f, Screen.height * 0.75f, Screen.width, 40f), "Click to chop", style);
+        HintUI.Prompt("Click", "chop");
     }
 }

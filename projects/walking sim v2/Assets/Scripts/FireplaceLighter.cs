@@ -76,8 +76,6 @@ public class FireplaceLighter : MonoBehaviour
     void OnGUI()
     {
         if (!lookingAtIt) return;
-        var style = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 22 };
-        string hint = "Press E to throw the log on the fire (" + logsIn + "/" + logsNeeded + ")";
-        GUI.Label(new Rect(0f, Screen.height * 0.75f, Screen.width, 40f), hint, style);
+        HintUI.Prompt("E", "throw the log on the fire   " + logsIn + " / " + logsNeeded);
     }
 }

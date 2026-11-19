@@ -55,8 +55,6 @@ public class CurtainToggle : MonoBehaviour
     void OnGUI()
     {
         if (!lookingAtIt) return;
-        var style = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 22 };
-        string hint = isOpen ? "Press E to close the curtain" : "Press E to open the curtain";
-        GUI.Label(new Rect(0f, Screen.height * 0.75f, Screen.width, 40f), hint, style);
+        HintUI.Prompt("E", isOpen ? "close the curtain" : "open the curtain");
     }
 }

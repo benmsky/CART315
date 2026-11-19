@@ -40,11 +40,15 @@ public class PlayerHands : MonoBehaviour
         else if (leftItem != null) leftItem.Drop();
     }
 
-    // small reminder in the corner while you're holding something
+    // dot in the middle, and what's in your hands down in the corner
     void OnGUI()
     {
+        HintUI.Crosshair();
         if (rightItem == null && leftItem == null) return;
-        var style = new GUIStyle(GUI.skin.label) { fontSize = 18 };
-        GUI.Label(new Rect(20f, Screen.height - 40f, 300f, 30f), "Q to drop", style);
+
+        int row = 0;
+        HintUI.Corner("[Q]  drop", row++);
+        if (rightItem != null) HintUI.Corner("Right hand:  " + rightItem.itemName, row++);
+        if (leftItem != null) HintUI.Corner("Left hand:  " + leftItem.itemName, row++);
     }
 }

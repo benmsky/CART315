@@ -40,8 +40,6 @@ public class LampSwitch : MonoBehaviour
     void OnGUI()
     {
         if (!lookingAtIt) return;
-        var style = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 22 };
-        string hint = lampLight.enabled ? "Press E to turn the lamp off" : "Press E to turn the lamp on";
-        GUI.Label(new Rect(0f, Screen.height * 0.75f, Screen.width, 40f), hint, style);
+        HintUI.Prompt("E", lampLight.enabled ? "turn the lamp off" : "turn the lamp on");
     }
 }

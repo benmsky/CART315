@@ -92,7 +92,6 @@ public class HoldableItem : MonoBehaviour
     void OnGUI()
     {
         if (IsHeld || !lookingAtIt) return;
-        var style = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 22 };
-        GUI.Label(new Rect(0f, Screen.height * 0.75f, Screen.width, 40f), "Press E to pick up the " + itemName, style);
+        HintUI.Prompt("E", "pick up the " + itemName);
     }
 }
