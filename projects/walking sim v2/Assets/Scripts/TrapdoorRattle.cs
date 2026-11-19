@@ -15,6 +15,7 @@ public class TrapdoorRattle : MonoBehaviour
     public float pushChance = 0.35f; // how often it pushes instead of knocking (0.35 = 35%)
     public float pushHeight = 0.04f; // how far the door lifts, in metres
     public float pushTilt = 3f;      // how far it tips up on one side, in degrees
+    public float pushTime = 0.6f;    // how long one push takes, up and back down
 
     private AudioSource audioSource;
     private Vector3 startPosition;
@@ -50,7 +51,7 @@ public class TrapdoorRattle : MonoBehaviour
 
                 if (Random.value < pushChance)
                 {
-                    StartMove(0.6f, pushHeight, pushTilt, true);
+                    StartMove(pushTime, pushHeight, pushTilt, true);
                 }
                 else
                 {

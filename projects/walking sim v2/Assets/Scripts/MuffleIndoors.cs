@@ -14,6 +14,7 @@ public class MuffleIndoors : MonoBehaviour
     public float indoorCutoff = 2000f;   // high sounds like birds get softened
     public float indoorVolume = 1.25f;   // 1.25 = 25% louder, so it stays easy to hear
     public float fadeSpeed = 3f;
+    public bool muffleWhenOutside;       // flip it for sounds that come from inside the cabin (like the cellar)
     public AudioSource indoorVersion;    // optional, leave empty to just muffle
 
     private AudioLowPassFilter filter;
@@ -38,6 +39,7 @@ public class MuffleIndoors : MonoBehaviour
     void Update()
     {
         bool inside = cabinArea.Contains(player.position);
+        if (muffleWhenOutside) inside = !inside;   // "inside" just means the side where it gets muffled
 
         float targetCutoff = inside ? indoorCutoff : outdoorCutoff;
 

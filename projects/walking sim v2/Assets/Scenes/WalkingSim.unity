@@ -132667,12 +132667,13 @@ MonoBehaviour:
   - {fileID: 58289162}
   trapdoor: {fileID: 1603614679}
   nightAmbience: {fileID: 1487963352}
-  angryShortestWait: 0.4
-  angryLongestWait: 1.1
-  angryPushChance: 0.7
+  angryShortestWait: 0.12
+  angryLongestWait: 0.35
+  angryPushChance: 0.6
+  angryPushTime: 0.22
   angryPushHeight: 0.09
   angryPushTilt: 7
-  angryReach: 14
+  angryReach: 60
   fireLight: {fileID: 1605727264}
   fireParticles:
   - {fileID: 684713601}
@@ -227276,6 +227277,7 @@ MonoBehaviour:
   indoorCutoff: 2000
   indoorVolume: 0
   fadeSpeed: 3
+  muffleWhenOutside: 0
   indoorVersion: {fileID: 0}
 --- !u!169 &1487963351
 AudioLowPassFilter:
@@ -242707,6 +242709,8 @@ GameObject:
   - component: {fileID: 1603614677}
   - component: {fileID: 1603614679}
   - component: {fileID: 1603614678}
+  - component: {fileID: 1603614681}
+  - component: {fileID: 1603614680}
   m_Layer: 0
   m_Name: Trapdoor
   m_TagString: Untagged
@@ -242753,8 +242757,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 15
+  MinDistance: 4
+  MaxDistance: 45
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -242853,6 +242857,54 @@ MonoBehaviour:
   pushChance: 0.35
   pushHeight: 0.04
   pushTilt: 3
+  pushTime: 0.6
+--- !u!114 &1603614680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603614676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5354ca77cf1536b4eb183cdadbaabd60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MuffleIndoors
+  player: {fileID: 460502793}
+  cabinArea:
+    m_Center: {x: 0, y: 2, z: 0}
+    m_Extent: {x: 6, y: 2, z: 5}
+  outdoorCutoff: 22000
+  indoorCutoff: 1100
+  indoorVolume: 0.8
+  fadeSpeed: 3
+  muffleWhenOutside: 1
+  indoorVersion: {fileID: 0}
+--- !u!169 &1603614681
+AudioLowPassFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1603614676}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_LowpassResonanceQ: 1
+  lowpassLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1604519920
 GameObject:
   m_ObjectHideFlags: 0

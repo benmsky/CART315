@@ -14,12 +14,15 @@ public class DarkTurn : MonoBehaviour
     public AudioSource nightAmbience;
 
     // the cellar once it's angry
-    public float angryShortestWait = 0.4f;
-    public float angryLongestWait = 1.1f;
-    public float angryPushChance = 0.7f;
+    public float angryShortestWait = 0.12f;  // basically nonstop
+    public float angryLongestWait = 0.35f;
+    public float angryPushChance = 0.6f;
+    public float angryPushTime = 0.22f;      // quick hard shoves
     public float angryPushHeight = 0.09f;
     public float angryPushTilt = 7f;
-    public float angryReach = 14f;       // bangs even if you're across the cabin
+    public float angryReach = 60f;       // keeps going wherever you are, it just gets fainter
+    public float fullAngerBeforeEnd = 1f; // hits full speed this many seconds before the tape finishes
+    public float rampCurve = 3f;         // higher = stays slow longer, then shoots up at the end
 
     // the fire going out
     public Light fireLight;
@@ -39,6 +42,10 @@ public class DarkTurn : MonoBehaviour
     private float moonStart;
     private float flareStart;
 
+    // what the cellar was like before the tape, so it can build from there
+    private float calmShortest, calmLongest, calmPushChance, calmPushHeight, calmPushTilt, calmPushTime;
+    private float rampTime;
+
     void Start()
     {
         moonStart = moonlight.intensity;
@@ -54,6 +61,7 @@ public class DarkTurn : MonoBehaviour
         }
 
         timer += Time.deltaTime;
+        BuildUpCellar();
 
         // 1. lights going crazy
         if (timer < flickerTime)
@@ -86,22 +94,41 @@ public class DarkTurn : MonoBehaviour
     {
         started = true;
 
-        // the cellar goes off
+        // remember how the cellar is now, it builds up from this over the tape
         if (trapdoor != null)
         {
-            trapdoor.shortestWait = angryShortestWait;
-            trapdoor.longestWait = angryLongestWait;
-            trapdoor.pushChance = angryPushChance;
-            trapdoor.pushHeight = angryPushHeight;
-            trapdoor.pushTilt = angryPushTilt;
+            calmShortest = trapdoor.shortestWait;
+            calmLongest = trapdoor.longestWait;
+            calmPushChance = trapdoor.pushChance;
+            calmPushHeight = trapdoor.pushHeight;
+            calmPushTilt = trapdoor.pushTilt;
+            calmPushTime = trapdoor.pushTime;
             trapdoor.triggerDistance = angryReach;
-            trapdoor.timeBetweenThumps = 0.2f;   // start right away
         }
+        float tapeLength = tape.clip != null ? tape.clip.length : 12f;
+        rampTime = Mathf.Max(1f, tapeLength - fullAngerBeforeEnd);
 
         // the fire dies. particles stop making new flames so the old ones fade out
         if (fireLight != null) fireLight.enabled = false;
         foreach (ParticleSystem p in fireParticles) p.Stop(true, ParticleSystemStopBehavior.StopEmitting);
         if (fireSound != null) fireSound.Stop();
         if (embers != null && coldEmbers != null) embers.sharedMaterial = coldEmbers;
+    }
+
+    // slowly at first, then faster and faster until it's going nuts right before the tape ends
+    void BuildUpCellar()
+    {
+        if (trapdoor == null) return;
+        float anger = Mathf.Pow(Mathf.Clamp01(timer / rampTime), rampCurve);
+
+        trapdoor.shortestWait = Mathf.Lerp(calmShortest, angryShortestWait, anger);
+        trapdoor.longestWait = Mathf.Lerp(calmLongest, angryLongestWait, anger);
+        trapdoor.pushChance = Mathf.Lerp(calmPushChance, angryPushChance, anger);
+        trapdoor.pushHeight = Mathf.Lerp(calmPushHeight, angryPushHeight, anger);
+        trapdoor.pushTilt = Mathf.Lerp(calmPushTilt, angryPushTilt, anger);
+        trapdoor.pushTime = Mathf.Lerp(calmPushTime, angryPushTime, anger);
+
+        // if it already picked a long wait, cut it short so it keeps up with the build
+        trapdoor.timeBetweenThumps = Mathf.Min(trapdoor.timeBetweenThumps, trapdoor.longestWait);
     }
 }
