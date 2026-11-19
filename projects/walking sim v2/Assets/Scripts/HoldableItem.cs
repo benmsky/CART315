@@ -22,6 +22,8 @@ public class HoldableItem : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody>();
+        // things spawned in later (like logs) don't know the player yet, so go find them
+        if (hands == null) hands = FindFirstObjectByType<PlayerHands>();
     }
 
     void Update()
