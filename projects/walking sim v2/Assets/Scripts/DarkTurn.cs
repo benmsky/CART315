@@ -118,7 +118,7 @@ public class DarkTurn : MonoBehaviour
     // slowly at first, then faster and faster until it's going nuts right before the tape ends
     void BuildUpCellar()
     {
-        if (trapdoor == null) return;
+        if (trapdoor == null || trapdoor.IsCalming) return;   // the fire's doing its thing, leave it alone
         float anger = Mathf.Pow(Mathf.Clamp01(timer / rampTime), rampCurve);
 
         trapdoor.shortestWait = Mathf.Lerp(calmShortest, angryShortestWait, anger);

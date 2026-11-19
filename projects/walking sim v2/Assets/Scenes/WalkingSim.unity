@@ -112924,7 +112924,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FireplaceLighter
   hands: {fileID: 460502802}
   reachDistance: 2.5
+  logsNeeded: 3
   logSpot: {fileID: 1420621733}
+  stackSpots:
+  - {x: -0.12, y: -0.04, z: 0}
+  - {x: 0.12, y: -0.04, z: 0}
+  - {x: 0, y: 0.2, z: 0}
   fireLight: {fileID: 1605727264}
   fireParticles:
   - {fileID: 684713601}
@@ -112932,6 +112937,7 @@ MonoBehaviour:
   fireSound: {fileID: 1605727265}
   embers: {fileID: 1822014960}
   hotEmbers: {fileID: 2100000, guid: fdb903fdcb3438643af7b4d80aed76a1, type: 2}
+  trapdoor: {fileID: 1603614679}
 --- !u!1 &768705399
 GameObject:
   m_ObjectHideFlags: 0
@@ -132674,6 +132680,8 @@ MonoBehaviour:
   angryPushHeight: 0.09
   angryPushTilt: 7
   angryReach: 60
+  fullAngerBeforeEnd: 1
+  rampCurve: 3
   fireLight: {fileID: 1605727264}
   fireParticles:
   - {fileID: 684713601}

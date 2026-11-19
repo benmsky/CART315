@@ -1,14 +1,18 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// once the fire's out, bring a log back, look at the fireplace and press E to throw it on.
-// the log stays in the grate and the fire comes back
+// once the fire's out, bring logs back, look at the fireplace and press E to throw each one on.
+// it takes 3 logs to get it going again, and once it's lit the cellar finally shuts up
 // goes on the fireplace
 public class FireplaceLighter : MonoBehaviour
 {
     public PlayerHands hands;
     public float reachDistance = 2.5f;
-    public Transform logSpot;            // where the log ends up in the grate
+    public int logsNeeded = 3;
+    public Transform logSpot;            // middle of the grate
+
+    // where each log sits, two side by side and one on top
+    public Vector3[] stackSpots = { new Vector3(-0.12f, -0.04f, 0f), new Vector3(0.12f, -0.04f, 0f), new Vector3(0f, 0.2f, 0f) };
 
     // the fire bits to turn back on
     public Light fireLight;
@@ -17,6 +21,9 @@ public class FireplaceLighter : MonoBehaviour
     public Renderer embers;
     public Material hotEmbers;
 
+    public TrapdoorRattle trapdoor;      // calms down and goes quiet once the fire's lit
+
+    private int logsIn;
     private bool lookingAtIt;
 
     void Update()
@@ -48,20 +55,29 @@ public class FireplaceLighter : MonoBehaviour
         foreach (Collider c in log.GetComponentsInChildren<Collider>()) Destroy(c);
         Destroy(log);
         log.transform.SetParent(logSpot, false);
-        log.transform.localPosition = Vector3.zero;
+        log.transform.localPosition = stackSpots[Mathf.Min(logsIn, stackSpots.Length - 1)];
         log.transform.localRotation = Quaternion.identity;
+        logsIn++;
 
-        // fire back on
+        if (logsIn >= logsNeeded) LightFire();
+    }
+
+    void LightFire()
+    {
         fireLight.enabled = true;
         foreach (ParticleSystem p in fireParticles) p.Play();
         if (fireSound != null) fireSound.Play();
         if (embers != null && hotEmbers != null) embers.sharedMaterial = hotEmbers;
+
+        // whatever's in the cellar gives up
+        if (trapdoor != null) trapdoor.FadeOut();
     }
 
     void OnGUI()
     {
         if (!lookingAtIt) return;
         var style = new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontSize = 22 };
-        GUI.Label(new Rect(0f, Screen.height * 0.75f, Screen.width, 40f), "Press E to throw the log on the fire", style);
+        string hint = "Press E to throw the log on the fire (" + logsIn + "/" + logsNeeded + ")";
+        GUI.Label(new Rect(0f, Screen.height * 0.75f, Screen.width, 40f), hint, style);
     }
 }

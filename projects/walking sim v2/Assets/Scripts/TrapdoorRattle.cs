@@ -16,6 +16,9 @@ public class TrapdoorRattle : MonoBehaviour
     public float pushHeight = 0.04f; // how far the door lifts, in metres
     public float pushTilt = 3f;      // how far it tips up on one side, in degrees
     public float pushTime = 0.6f;    // how long one push takes, up and back down
+    public float fadeOutTime = 5f;   // how long it takes to calm down once the fire's lit
+
+    public bool IsCalming { get; private set; }
 
     private AudioSource audioSource;
     private Vector3 startPosition;
@@ -29,6 +32,11 @@ public class TrapdoorRattle : MonoBehaviour
     private float moveTilt;
     private bool slamAtEnd;
 
+    // calming down
+    private float calmTimer;
+    private float loudness = 1f;
+    private float fromShortest, fromLongest, fromPushChance, fromPushHeight;
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
@@ -38,6 +46,8 @@ public class TrapdoorRattle : MonoBehaviour
 
     void Update()
     {
+        if (IsCalming) CalmDown();
+
         float distance = Vector3.Distance(transform.position, player.position);
 
         // only act up when the player is close
@@ -56,7 +66,7 @@ public class TrapdoorRattle : MonoBehaviour
                 else
                 {
                     audioSource.pitch = Random.Range(0.9f, 1.1f);
-                    audioSource.PlayOneShot(knockSounds[Random.Range(0, knockSounds.Length)]);
+                    audioSource.PlayOneShot(knockSounds[Random.Range(0, knockSounds.Length)], loudness);
                     StartMove(0.2f, pushHeight * 0.15f, 0f, false); // a tiny jitter with each knock
                 }
             }
@@ -79,9 +89,41 @@ public class TrapdoorRattle : MonoBehaviour
                 if (slamAtEnd)
                 {
                     audioSource.pitch = Random.Range(0.8f, 1.05f);
-                    audioSource.PlayOneShot(thumpSound);
+                    audioSource.PlayOneShot(thumpSound, loudness);
                 }
             }
+        }
+    }
+
+    // starts calming down: knocks get further apart and quieter, then it stops for good
+    public void FadeOut()
+    {
+        if (IsCalming) return;
+        IsCalming = true;
+        fromShortest = shortestWait;
+        fromLongest = longestWait;
+        fromPushChance = pushChance;
+        fromPushHeight = pushHeight;
+    }
+
+    void CalmDown()
+    {
+        calmTimer += Time.deltaTime;
+        float t = Mathf.Clamp01(calmTimer / fadeOutTime);
+
+        loudness = 1f - t;
+        shortestWait = Mathf.Lerp(fromShortest, 1.5f, t);
+        longestWait = Mathf.Lerp(fromLongest, 3.5f, t);
+        pushChance = Mathf.Lerp(fromPushChance, 0f, t);
+        pushHeight = Mathf.Lerp(fromPushHeight, 0.01f, t);
+
+        // all done, door back down and quiet
+        if (t >= 1f)
+        {
+            moveTimer = 0f;
+            transform.position = startPosition;
+            transform.rotation = startRotation;
+            enabled = false;
         }
     }
 
