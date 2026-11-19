@@ -98724,6 +98724,7 @@ GameObject:
   - component: {fileID: 693374526}
   - component: {fileID: 693374528}
   - component: {fileID: 693374527}
+  - component: {fileID: 693374529}
   m_Layer: 0
   m_Name: Firebox Back
   m_TagString: Untagged
@@ -98803,6 +98804,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 693374525}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &693374529
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 693374525}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &694365007
 GameObject:
   m_ObjectHideFlags: 0
@@ -112837,6 +112859,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 768648000}
+  - component: {fileID: 768648001}
   m_Layer: 0
   m_Name: Fireplace
   m_TagString: Untagged
@@ -112884,8 +112907,31 @@ Transform:
   - {fileID: 53078669}
   - {fileID: 1994594996}
   - {fileID: 43357874}
+  - {fileID: 1420621733}
   m_Father: {fileID: 1320988251}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &768648001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 768647999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e0290a476ac6174ea345f4f02dfcc34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FireplaceLighter
+  hands: {fileID: 460502802}
+  reachDistance: 2.5
+  logSpot: {fileID: 1420621733}
+  fireLight: {fileID: 1605727264}
+  fireParticles:
+  - {fileID: 684713601}
+  - {fileID: 1175931536}
+  fireSound: {fileID: 1605727265}
+  embers: {fileID: 1822014960}
+  hotEmbers: {fileID: 2100000, guid: fdb903fdcb3438643af7b4d80aed76a1, type: 2}
 --- !u!1 &768705399
 GameObject:
   m_ObjectHideFlags: 0
@@ -218397,6 +218443,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419835689}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1420621732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1420621733}
+  m_Layer: 0
+  m_Name: Log Spot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1420621733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1420621732}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.5, y: 0.99, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 768648000}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1420658204
 GameObject:
   m_ObjectHideFlags: 0
